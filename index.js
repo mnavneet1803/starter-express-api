@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+
+app.use(express.json());
+
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('you are at home page')
