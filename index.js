@@ -1,8 +1,14 @@
 const express = require('express')
 const app = express()
 const mongoose = require("mongoose");
+const path = require('path')
 app.use(express.json());
 
+app.use((req, res, next) => {
+
+  console.log('Request received:', req.method, req.url);
+  next();
+});
 
 const connectDB = async () => {
     try {
@@ -17,11 +23,15 @@ const connectDB = async () => {
   }
   connectDB()
 
+  app.use("/public", express.static(path.join(__dirname, "public")));
+
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('you are at home page')
 })
 let authRouter = require('./routes/auth.route')
 authRouter(app)
+let productRouter = require('./routes/product.route')
+productRouter(app)
 
 app.listen(process.env.PORT || 3000)

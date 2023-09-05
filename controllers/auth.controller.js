@@ -11,13 +11,14 @@ exports.signup = async (req,res)=>{
         password: bcrypt.hashSync(req.body.password, 10),
         confirm_password: bcrypt.hashSync(req.body.confirm_password, 10),
         phone: req.body.phone,
-        address: req.body.address
+        address: req.body.address,
+        bussiness_type:req.body.bussiness_type
     }
     try {
         let userData = await User.find({ phone: userObj.phone })
         if(userData.length){
             res.send({
-                status:false,
+                status:0,
                 message:"phone number already exist"
             })
         return
@@ -25,6 +26,7 @@ exports.signup = async (req,res)=>{
         const data = await User.create(userObj)
         console.log("user created successful")
         res.status(200).send({
+            status:1,
             "message": "user created successful",
             data:data
         })
@@ -41,6 +43,7 @@ exports.signin= async (req,res)=>{
     const users = await User.find({ phone: req.body.phone })
    if (users.length==0) {
         res.status(400).send({
+            status:0,
             message: "Failed! Userid doesn't exist!"
         })
         return
@@ -48,6 +51,7 @@ exports.signin= async (req,res)=>{
    if (!bcrypt.compareSync(req.body.password, users[0].password)) {
         console.log("Condition met")
         res.status(401).send({
+            status:0,
             message: "Invalid Password!"
         })
         return
@@ -57,6 +61,7 @@ exports.signin= async (req,res)=>{
     })
     
     res.status(200).send({
+        status:1,
         name:users[0].first_name,
         phone:users[0].phone,
         accessToken:token

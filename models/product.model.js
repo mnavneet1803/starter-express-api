@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const productSchema = new Schema({
     first_name: {
         type: String,
         required: true
@@ -11,19 +11,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    company_name: {
-        type: String,
-        required: true
-    },
-    bussiness_type: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    confirm_password: {
+    product_name: {
         type: String,
         required: true
     },
@@ -31,13 +19,22 @@ const userSchema = new Schema({
         type: Number,
         required: true
     },
-    address: {
-        type: String,
+    user_phone: {
+        type: Number,
         required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    deal: {
+        type: String,
+        enum : ['done','pending','close'],
+        default: 'done'
     },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 })
 
 // CREATING MODEL
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Product', productSchema);
