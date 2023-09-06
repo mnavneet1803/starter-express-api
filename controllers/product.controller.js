@@ -92,6 +92,7 @@ exports.deleteProduct = async (req, res) => {
 
 
 exports.exportProduct = async (req, res) => {
+    console.log("hello");
     let Data = await Product.find({ user_phone: req.phone, deal: "pending" }).select('first_name last_name product_name phone deal date')
 
     const workbook = new excelJS.Workbook();  // Create a new workbook
@@ -100,6 +101,7 @@ exports.exportProduct = async (req, res) => {
     const outputFolder = path.resolve(__dirname, '../public/uploads');
     const excelFileName = `${Math.floor(Math.random() * 10000000000)}.xlsx`;
     const excelFilePath = `${outputFolder}/${excelFileName}`;
+    console.log(excelFilePath);
     // Column for data in excel. key must match data key
     worksheet.columns = [
         { header: "S no.", key: "s_no", width: 10 },
