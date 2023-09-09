@@ -40,6 +40,7 @@ exports.findPendingProducts = async (req, res) => {
     let data = await Product.find({ user_phone: req.phone, deal: "pending" })
     res.send({
         status: 1,
+        message:"data got successfully",
         data: data
     })
 }
@@ -47,6 +48,7 @@ exports.findcloseProducts = async (req, res) => {
     let data = await Product.find({ user_phone: req.phone, deal: "close" })
     res.send({
         status: 1,
+        message:"data got successfully",
         data: data
     })
 }
@@ -56,6 +58,7 @@ exports.updateProduct = async (req, res) => {
     let data = await Product.findOneAndUpdate(id, req.body)
     res.send({
         status: 1,
+        message:"data updated successfully",
         data: data
     })
 }
@@ -64,6 +67,7 @@ exports.findProduct = async (req, res) => {
     let data = await Product.findOne({ "_id": req.body.id })
     res.send({
         status: 1,
+        message:"data got successfully",
         data: data
     })
 }
@@ -92,16 +96,20 @@ exports.deleteProduct = async (req, res) => {
 
 
 exports.exportProduct = async (req, res) => {
-    console.log("hello");
     let Data = await Product.find({ user_phone: req.phone, deal: "pending" }).select('first_name last_name product_name phone deal date')
 
     const workbook = new excelJS.Workbook();  // Create a new workbook
     const worksheet = workbook.addWorksheet("My Users"); // New Worksheet
 
-    const outputFolder = path.resolve(__dirname, '../public/uploads');
+    const outputFolder = ('/public/uploads');
     const excelFileName = `${Math.floor(Math.random() * 10000000000)}.xlsx`;
     const excelFilePath = `${outputFolder}/${excelFileName}`;
     console.log(excelFilePath);
+    res.send({
+        status :0,
+        message:"this api is not workin now"
+    })
+    return
     // Column for data in excel. key must match data key
     worksheet.columns = [
         { header: "S no.", key: "s_no", width: 10 },
