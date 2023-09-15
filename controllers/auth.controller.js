@@ -24,10 +24,14 @@ exports.signup = async (req,res)=>{
         return
         }
         const data = await User.create(userObj)
-        console.log("user created successful")
+        let token = jwt.sign({phone: data.phone }, config.secret, {
+            expiresIn: 86400 // 24 hours
+        })
+        console.log("user created successful",data.phone)
         res.status(200).send({
             status:1,
             "message": "user created successful",
+            accessToken:token,
             data:data
         })
     } catch (error) {
