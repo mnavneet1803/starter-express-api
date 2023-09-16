@@ -5,9 +5,7 @@ module.exports = function authRouter(app) {
     app.post("/get/product",[middleware.verifyToken],productController.findProduct)
     app.post("/delete/product",[middleware.verifyToken],productController.deleteProduct)
     app.post("/update/product",[middleware.verifyToken],productController.updateProduct)
-    app.get("/get/products/done",[middleware.verifyToken],productController.findDoneProducts)
-    app.get("/get/products/pending",[middleware.verifyToken],productController.findPendingProducts)
-    app.get("/get/products/close",[middleware.verifyToken],productController.findcloseProducts)
+    app.post("/get/all/products",[middleware.verifyToken],productController.findAllProducts)
+    app.get("/get/products/count",[middleware.verifyToken],productController.findProductsCount)
     app.get("/export/products/pending",[middleware.verifyToken],productController.exportProduct)
-
 }

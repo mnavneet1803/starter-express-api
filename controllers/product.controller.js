@@ -28,28 +28,32 @@ exports.saveProduct = async (req, res) => {
     }
 }
 
-exports.findDoneProducts = async (req, res) => {
-    let data = await Product.find({ user_phone: req.phone, deal: "done" })
-    res.send({
-        status: 1,
-        data: data
-    })
-}
+exports.findAllProducts = async (req, res) => {
+    let deal
+    if(req.body.deal==0){
+        deal="pending"
+    }else if(req.body.deal==1){
+        deal = "done"
+    }else{
+        deal = "close"
+    }
 
-exports.findPendingProducts = async (req, res) => {
-    let data = await Product.find({ user_phone: req.phone, deal: "pending" })
+    let data = await Product.find({ user_phone: req.phone, deal: deal })
     res.send({
         status: 1,
-        message:"data got successfully",
         data: data
     })
 }
-exports.findcloseProducts = async (req, res) => {
-    let data = await Product.find({ user_phone: req.phone, deal: "close" })
+exports.findProductsCount = async (req, res) => {
+    let doneCount = await Product.find({ user_phone: req.phone, deal: "done" })
+    let pendingCount = await Product.find({ user_phone: req.phone, deal: "pending" })
+    let closeCount = await Product.find({ user_phone: req.phone, deal: "close" })
+console.log(doneCount.length);
     res.send({
         status: 1,
-        message:"data got successfully",
-        data: data
+        doneCount:doneCount.length,
+        pendingCount:pendingCount.length,
+        closeCount:closeCount.length
     })
 }
 
