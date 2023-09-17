@@ -19,6 +19,10 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
+    status: {
+        type: Number,
+        default:1
+    },
     user_phone: {
         type: Number,
         required: true

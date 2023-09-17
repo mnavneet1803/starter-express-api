@@ -67,6 +67,17 @@ exports.updateProduct = async (req, res) => {
     })
 }
 
+exports.changeStatus = async (req, res) => {
+    let id = { "_id": req.body.id }
+    let data = await Product.findOneAndUpdate(id, req.body)
+    res.send({
+        status: 1,
+        message:"data updated successfully",
+        data: data
+    })
+}
+
+
 exports.findProduct = async (req, res) => {
     let data = await Product.findOne({ "_id": req.body.id })
     res.send({
