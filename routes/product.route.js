@@ -1,7 +1,10 @@
 const middleware = require("../middleware/verify.token")
 const productController =require("../controllers/product.controller")
 var multer = require("multer")
-var fs = require("fs");
+const fs = require('@cyclic.sh/s3fs')("UPLOAD", {
+  accessKeyId: "ASIA6GKMLSLU5AFONZNA",
+  secretAccessKey: "e/kMnNPPpK4dfGA2SrQNB3YasBEa9e1J2K64+5AB"
+})
 var mime = require("mime");
 const path = require('path')
 
