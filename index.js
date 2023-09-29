@@ -28,7 +28,7 @@ const connectDB = async () => {
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
-    res.send('you are at home page')
+    res.send('you are at home page ' +process.env.PORT )
 })
 let authRouter = require('./routes/auth.route')
 authRouter(app)
@@ -36,5 +36,5 @@ let productRouter = require('./routes/product.route')
 productRouter(app)
 
 app.listen(process.env.PORT || 3000,()=>{
-  console.log("server is running  : ",process.env.PORT)
+  console.log("server is running  : ",process.env.PORT)}
           )
