@@ -27,7 +27,7 @@ const path = require('path')
 
     const storage = multer.diskStorage({ 
       destination: (req, file, cb) => {
-        var destFolder = 'images';
+        var destFolder = 'temp';
         if (!fs.existsSync(destFolder )) {
           fs.mkdirSync(destFolder );
         }
