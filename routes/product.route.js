@@ -27,9 +27,9 @@ const path = require('path')
 
     const storage = multer.diskStorage({ 
       destination: (req, file, cb) => {
-        var destFolder = 'images/';
-        if (!fs.existsSync(destFolder + file.fieldname)) {
-          fs.mkdirSync(destFolder + file.fieldname);
+        var destFolder = 'images';
+        if (!fs.existsSync(destFolder )) {
+          fs.mkdirSync(destFolder );
         }
         cb(null, destFolder) },
        filename: (req, file, cb) => { cb(null, Date.now() + path.extname(file.originalname)) }
