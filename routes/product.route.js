@@ -1,7 +1,7 @@
 const middleware = require("../middleware/verify.token")
 const productController =require("../controllers/product.controller")
 var multer = require("multer")
-const fs = require('@cyclic.sh/s3fs')(S3_BUCKET_NAME, {
+const fs = require('@cyclic.sh/s3fs')(process.env.CYCLIC_BUCKET_NAME, {
    AWS_REGION:'us-east-1' ,
    AWS_ACCESS_KEY_ID:'ASIA6GKMLSLURJSARWME',
    AWS_SECRET_ACCESS_KEY:'3rE5auM48vYk2u0eR8X+DzUL7DJ4X7PkgSJuxa+p',
