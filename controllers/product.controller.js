@@ -112,7 +112,7 @@ exports.deleteProduct = async (req, res) => {
 exports.saveImage = async (req,res)=>{
 
         console.log(req.file);
-        res.send("abc")
+        res.send(req.file)
 }
 
 
