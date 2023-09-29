@@ -24,6 +24,7 @@ const connectDB = async () => {
   connectDB()
 
   app.use("/public", express.static(path.join(__dirname, "public")));
+  app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
