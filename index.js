@@ -35,4 +35,6 @@ authRouter(app)
 let productRouter = require('./routes/product.route')
 productRouter(app)
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000,()=>{
+  console.log("server is running  : ",process.env.PORT)
+          )
